@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #8a2be2, #000, #001f3f);
+            background-size: 200% 200%;
+            animation: gradientAnimation 10s infinite alternate, backgroundAnimation 20s infinite linear; /* Add gradient and background animations */
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 0%; /* Initial gradient position */
+            }
+            100% {
+                background-position: 100% 100%; /* Final gradient position */
+            }
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background-size: 200% 200%; /* Initial background size */
+            }
+            100% {
+                background-size: 150% 150%; /* Final background size */
+            }
+        }
+
+        .navbar {
+            padding: 10px 20px; /* Added padding */
+            text-align: center;
+            position: fixed; /* Fixed position at the top */
+            width: 100%; /* Full width */
+            top: 0; /* Stick to the top */
+            z-index: 1000; /* Set a higher z-index to ensure it's above other elements */
+            transition: background-color 0.3s; /* Add smooth transition */
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Align items vertically in the center */
+        }
+
+        .navbar a {
+            color: #fff; /* White text color */
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 20px;
+            transition: color 0.3s; /* Add smooth transition */
+        }
+
+        .navbar a:hover {
+            color: #ffcc00; /* Yellow color on hover */
+        }
+
+        .navbar-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        .difficulty-button {
+            height: 80px;
+            width: 350px;
+            border: 3px solid #fff; /* White border */
+            background-color: transparent; /* Transparent background */
+            border-radius: 40px;
+            text-align: center;
+            line-height: 80px;
+            font-size: 24px;
+            text-decoration: none;
+            color: #fff; /* White text */
+            margin-top: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .difficulty-button:hover {
+            background: linear-gradient(45deg, #001f3f, #000, #8a2be2); /* Gradient on hover */
+            color: #fff;
+            transform: scale(1.1); /* Slight scaling on hover */
+        }
+
+        .sidebar {
+            width: 0;
+            height: 100%;
+            background: #000; /* Black background */
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 60px;
+            overflow-x: hidden;
+            transition: width 0.5s, border 0.5s, box-shadow 0.5s; /* Add smooth transition for width, border, and box-shadow */
+            z-index: 999; /* Ensure the sidebar appears above other elements */
+            border-right: 3px solid black; /* Doubled black border on the right */
+            border-radius: 10px; /* Added border-radius */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Added box-shadow for a subtle lift effect */
+        }
+
+        .sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            transition: color 0.3s; /* Add smooth transition */
+            width: 100%;
+            box-sizing: border-box;
+            pointer-events: auto; /* Re-enable pointer events for all links in the sidebar */
+        }
+
+        .sidebar a:hover {
+            color: #ffcc00; /* Yellow color on hover */
+        }
+
+        .sidebar a.no-pointer-events {
+            pointer-events: none; /* Disable pointer events for this specific link */
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+            margin: 20px;
+            order: -1; /* Move the menu icon to the left */
+            position: fixed; /* Fixed position on the left */
+            top: 20px; /* Adjusted top position */
+            left: 20px; /* Adjusted left position */
+            z-index: 1001; /* Ensure the menu icon appears above other elements */
+        }
+
+        @media only screen and (max-width: 600px) {
+            .navbar a {
+                display: none;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .sidebar {
+                width: 0;
+            }
+
+            .navbar-logo {
+                margin-left: 10px; /* Adjusted margin */
+            }
+        }
+        .opt{
+            font-size: small;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar" id="navbar">
+        <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div><br><br>
+    </div>
+    <div class="sidebar" id="sidebar"><br><br>
+        <a href="#" class="no-pointer-events"><b>Number Guessing Game</b></a>
+        <a class="opt" href="#">PROFILE</a>
+        <a class="opt" href="#">HOME</a>
+        <a class="opt" href="#">ABOUT</a>
+        <a class="opt" href="#">CONTACT</a>
+        <a class="opt" href="login">LOGIN</a>
+        <a class="opt" href="register">REGISTER</a>
+    </div>
+    <a href="#" class="difficulty-button">Easy</a>
+    <a href="#" class="difficulty-button">Medium</a>
+    <a href="#" class="difficulty-button">Expert</a>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+
+            if (sidebar.style.width === '200px') {
+                sidebar.style.width = '0';
+            } else {
+                sidebar.style.width = '200px';
+            }
+        }
+    </script>
+</body>
+</html>
